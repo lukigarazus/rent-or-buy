@@ -24,28 +24,6 @@ const series = (
   }, []);
 };
 
-const calculateIncrementalGrowth = (
-  init: number,
-  growth: number,
-  duration: number
-) => {
-  return makeArray(duration).reduce((acc, _, i) => {
-    acc.push(init * Math.pow(growth, i) - init + (acc[i - 1] || 0));
-    return acc;
-  }, []);
-};
-
-const calculateSteadyGrowth = (
-  init: number,
-  growth: number,
-  duration: number
-) => {
-  return makeArray(duration).reduce((acc, _, i) => {
-    acc.push(init * growth - init + (acc[i - 1] || 0));
-    return acc;
-  }, []);
-};
-
 export default function App() {
   const [housePrice, setHousePrice] = React.useState(470000);
   const [duration, setDuration] = React.useState(5);
@@ -114,6 +92,11 @@ export default function App() {
           type="number"
           value={interestRate}
           onChange={(ev) => setInterestRate(+ev.target.value)}
+        />
+        <input
+          type="number"
+          value={paidOffAfter}
+          onChange={(ev) => setPaidOffAfter(+ev.target.value)}
         />
         <input
           type="number"
